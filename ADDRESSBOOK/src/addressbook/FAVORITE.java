@@ -2,21 +2,23 @@ package addressbook;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeMap;
 
-public class FAVORITE extends EDIT{
+public class FAVORITE extends PERSON{
 	
-	public static List<PERSON> tree = new ArrayList();
-	public static List<PERSON> Favorite(PERSON favorite, int index){
-	    if(Favorite_list.contains(favorite))
+	List<PERSON> list = new ArrayList<PERSON>();
+	
+	public void Add(PERSON_LIST book,String search_string, int index){
+		PERSON NEW=book.tree.get(search_string).get(index);
+	    if(this.list.contains(NEW.name))
 	           System.out.println("Already exist in Favorite\n");
 	    else{
-	           Favorite_list.add(favorite);
+	           this.list.add(NEW);
 	    }
-	    return Favorite_list;
 	}
 	
 	public void Print(){
-		System.out.println("favorite print\n");
+		int length=this.list.size();
+		for(int i = 0; i <length;i++)
+			System.out.println(this.list.get(i).name+"\t"+this.list.get(i).phone+"\t"+this.list.get(i).email+"\t"+this.list.get(i).company+"\n");
 	}
 }

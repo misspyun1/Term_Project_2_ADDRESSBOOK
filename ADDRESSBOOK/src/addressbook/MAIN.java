@@ -1,22 +1,17 @@
 package addressbook;
 
 import java.util.Scanner;
-import java.util.TreeMap;
 import java.util.regex.Pattern;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Iterator;
-import java.util.Map;
 
-public class MAIN extends EDIT{   
+
+public class MAIN extends SEARCH{   
    
 	
    @SuppressWarnings("resource")
    public static void main(String[] args) {
       // TODO Auto-generated method stub
       PERSON_LIST Address_Tree=new PERSON_LIST();
-
+      FAVORITE favorite = new FAVORITE();
       
       while(true){
          System.out.println("0. CONTACTS\n1. Add\n2. Search\n3. Favorite\n4. Recents\n5. Exit");
@@ -41,7 +36,7 @@ public class MAIN extends EDIT{
 	               else{
 	                  
 	                  Address_Tree.Add(name.substring(0, 1)," "," "," ");
-	                  Address_Tree.isindex=true;
+	                  
 	               }
 	            }
 	            
@@ -82,7 +77,9 @@ public class MAIN extends EDIT{
 	            		String edit_string = inputstring.nextLine();
 	            		Edit(Address_Tree,search_string, edit_string, editmenu, 0);   
 	            	}
-	         
+	            	else if(editmenu==5){
+	            		favorite.Add(Address_Tree,search_string, edit_num-1);
+	            	}
 	            	else if(editmenu==6){
 	            		System.out.println("\n-----------Deleted------------\n");
 	            		Delete(Address_Tree, search_string,edit_num-1);
@@ -97,7 +94,7 @@ public class MAIN extends EDIT{
 	         }
 	         
 	         else if(menu==3){   
-	            
+	           favorite.Print();
 	         }
 	         else if(menu==4){
 	            
@@ -111,8 +108,5 @@ public class MAIN extends EDIT{
       }
    }
 
-private static void Address_Tree() {
-	// TODO Auto-generated method stub
-	
-}
+
 }
