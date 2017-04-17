@@ -88,7 +88,9 @@ public class MAIN extends SEARCH{
                      String edit_string = inputstring.nextLine();
                      Edit(Address_Tree,search_string, edit_string, editmenu, 0);   
                   }
-            
+                  else if(editmenu==5){
+                	  favorite.Add(Address_Tree, search_string, edit_num-1);
+                  }
                   else if(editmenu==6){
                      System.out.println("\n-----------Deleted------------\n");
                      Delete(Address_Tree, search_string,edit_num-1);

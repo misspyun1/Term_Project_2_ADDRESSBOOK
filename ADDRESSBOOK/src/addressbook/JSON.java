@@ -76,7 +76,7 @@ public class JSON extends PERSON_LIST{
       JSONParser parser = new JSONParser();
       List<RECENTS> recent = new ArrayList();
        try{
-          Object object = parser.parse(new FileReader("C:\\Users\\Administrator\\Desktop\\recents.json\\"));
+    	   	Object object = parser.parse(new FileReader("C:\\Users\\Administrator\\Desktop\\recents.json\\"));
             JSONObject jsonObject = (JSONObject)object;
             
             JSONArray contact = (JSONArray)jsonObject.get("recents");
