@@ -104,5 +104,16 @@ public class JSON extends PERSON_LIST{
          }
        return recent;
    }
-   
+
+   public static void Makeindex(String name, PERSON_LIST book){
+		   if(Pattern.matches("[a-zA-Z]+",name.substring(0, 1))){
+	       	String index = name.substring(0, 1);
+	       	if(book.tree.containsKey(index)){}
+	          else{
+	             
+	             book.Add(index," "," "," ");
+	             book.tree.get(index).get(0).isindex=true;
+	          }
+	       }
+	   }
 }
