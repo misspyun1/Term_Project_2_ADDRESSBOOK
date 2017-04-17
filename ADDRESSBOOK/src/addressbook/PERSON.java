@@ -62,11 +62,13 @@ class PERSON_LIST {
 
 class SEARCH {
 	
-	   public static List<PERSON> SEARCHLIST=new ArrayList<PERSON>();
-	   
-	   public static void Search(PERSON_LIST book, String search_string){
-	      if(!book.tree.containsKey(search_string))
-	         System.out.println("No results.");
+
+	   public static int Search(PERSON_LIST book, String search_string){
+	      if(!book.tree.containsKey(search_string)){
+	    	  System.out.println("No results.");
+	    	  return 0;
+	      }
+	         
 	      else{
 	         int length = book.tree.get(search_string).size();
 	         for(int i=1;i<=length;i++)
@@ -74,24 +76,10 @@ class SEARCH {
 	                  "\t"+book.tree.get(search_string).get(i).phone+
 	                  "\t"+book.tree.get(search_string).get(i).email+
 	                  "\t"+book.tree.get(search_string).get(i).company);
+	         return length;
 	      }
+	      
 	   }
-	   public static void Delete(PERSON_LIST book,String key, int index){
-			List<PERSON> list = book.tree.get(key);
-			if(list.size()==1 ){
-				book.tree.remove(key);
-			}
-			else{
-				list.remove(index);
-			}
-			try{
-	           if(!book.tree.higherKey(key.substring(0, 1)).startsWith(key.substring(0, 1)))
-	               book.tree.remove(key.substring(0, 1));
-	           }catch(NullPointerException e){
-	              book.tree.remove(key.substring(0, 1));
-	           }
-		}
-		
 
 		public static void Edit(PERSON_LIST book,String search_string, String edit_string, int editmenu, int index){
 		      if(editmenu==1){
@@ -109,4 +97,25 @@ class SEARCH {
 		         book.tree.get(search_string).get(index).company=edit_string;
 		   
 		}
+		
+		public static void Delete(PERSON_LIST book,String key, int index){
+			List<PERSON> list = book.tree.get(key);
+			if(list.size()==1 ){
+				book.tree.remove(key);
+			}
+			else{
+				list.remove(index);
+			}
+			try{
+	           if(!book.tree.higherKey(key.substring(0, 1)).startsWith(key.substring(0, 1)))
+	               book.tree.remove(key.substring(0, 1));
+	           }catch(NullPointerException e){
+	              book.tree.remove(key.substring(0, 1));
+	           }
+		}
+		
+	   	public static void DeleteAll(PERSON_LIST book){
+	   		book.tree.clear();
+	   	}
+		
 	}

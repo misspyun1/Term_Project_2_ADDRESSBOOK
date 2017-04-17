@@ -31,11 +31,19 @@ public class MAIN extends SEARCH{
          
          try{
             int menu = inputnum.nextInt();
-         
+            
             if(menu==0){
                System.out.println("---------☎CONTACTS-----------");
                Address_Tree.Print();
-            }
+               System.out.println("1. Delete All Contact\n2. Quit\n");
+               try{
+            	   int contact_menu=inputnum.nextInt();
+            	   if(contact_menu==1) DeleteAll(Address_Tree);
+            	   else if(contact_menu==2) continue;
+               }catch(Exception e){
+                   System.out.println("\n! Please enter 1 or 2!\n");
+               }//contact메뉴에서 1 또는 2가 입력으로 안 들어올 때를 위한 try catch 문
+            }//menu==0
                
             else if(menu==1){
                System.out.print("name: ");
@@ -49,7 +57,7 @@ public class MAIN extends SEARCH{
                      Address_Tree.Add(index," "," "," ");
                      Address_Tree.tree.get(index).get(0).isindex=true;
                   }
-               }
+               }//주어진 name의 첫글자가 영어인지 판단하고, 인덱스를 만들어 주는 if문
                
                System.out.print("phone: ");
                String phone = inputstring.nextLine();
@@ -62,13 +70,12 @@ public class MAIN extends SEARCH{
                
                
                Address_Tree.Add(name, email, phone, company);
-            }
+            }//menu==1 (CONTACTS)
             
             else if(menu==2){
                int edit_num=0, editmenu=0;
                String search_string = inputstring.nextLine();
-               Search(Address_Tree, search_string);
-               int length = Address_Tree.tree.get(search_string).size();   //연락처 비어있으면 오류
+               int length = Search(Address_Tree, search_string);  //연락처 비어있으면 오류
                
                if(length!=1){
                   try{
@@ -77,8 +84,9 @@ public class MAIN extends SEARCH{
                   }catch(Exception e){
                      System.out.println("\n! Please enter the number !\n");
                   }
-               }
-               else edit_num=1;
+               }//만약 검색한 결과가 1개가 아니라면, 몇번째 연락처에 접근하고 싶은지 입력받는다. 
+               else edit_num=1;//1개라면, 바로 그 연락처에 접근하게 한다.
+               
                try{
                   System.out.println("1. edit name\n2. edit phone\n3. edit email\n4. edit company\n5. add to Favorite\n6. delete\n7. Do not edit");
                   editmenu = inputnum.nextInt();
@@ -101,11 +109,12 @@ public class MAIN extends SEARCH{
                   
                }catch(Exception e){
                   System.out.println("\n! Please enter the number !\n");
-               } 
-            }
+               } //edit menu 입력을 위한 try catch문
+            }//menu==2(Edit)
             
-            else if(menu==3)
+            else if(menu==3){
               favorite.Print();
+            }//menu==3(Favorite)
             
             else if(menu==4){
                recents.print();
@@ -116,21 +125,15 @@ public class MAIN extends SEARCH{
                char ans = inputnum.next().charAt(0);
                
                if(ans=='y')
-            	   recents.Show_contacts(Address_Tree,recent_num-1);
-               
-            }
-            else if(menu==4){
-                recents.print();
-                
-                
-             }
-            
-            else if(menu==5) break;
+            	   recents.Show_contacts(Address_Tree,recent_num-1); 
+            }//menu==4(Recent)
+            else if(menu==5) break;//menu==5
             else System.out.println("\n! Please select menu from 1 to 5 !\n");
+            
          }catch(Exception e){
             System.out.println("\n! Please enter the number !\n");
-         }
-      }
+         }//menu입력 try catch문
+      }//전체 while문
       json.makeData(Address_Tree);
-   }
-}
+   }//main 함수 
+}//main 클래스 
