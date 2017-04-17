@@ -9,7 +9,7 @@ public class FAVORITE extends PERSON{
 	
 	public void Add(PERSON_LIST book,String search_string, int index){
 		PERSON NEW=book.tree.get(search_string).get(index);
-	    if(this.list.contains(NEW.name))
+	    if(this.list.contains(NEW))
 	           System.out.println("Already exist in Favorite\n");
 	    else{
 	           this.list.add(NEW);
@@ -20,5 +20,15 @@ public class FAVORITE extends PERSON{
 		int length=this.list.size();
 		for(int i = 0; i <length;i++)
 			System.out.println(this.list.get(i).name+"\t"+this.list.get(i).phone+"\t"+this.list.get(i).email+"\t"+this.list.get(i).company+"\n");
+	}
+	
+	public void Delete(PERSON_LIST book,String search_string,int index){
+		PERSON NEW=book.tree.get(search_string).get(index);
+		if(this.list.contains(NEW)){
+			this.list.remove(NEW);
+		}
+		else{
+			System.out.println("It is not Favorite contact\n");
+		}
 	}
 }
